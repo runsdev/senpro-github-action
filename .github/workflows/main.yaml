@@ -40,22 +40,22 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             eval "$(ssh-agent -s)"
-            ssh-add ~/.ssh/<<NAMA_KEY_DARI_ASPRAK>>
+            ssh-add ~/.ssh/ssh-praktikan13
             echo "Cek folder project";
-            [ ! -d "${HOME}/senpro/<<NIU>>/modul02/senpro-github-action/" ] &&
+            [ ! -d "${HOME}/senpro/514148/modul02/senpro-github-action/" ] &&
             {
               echo "Repository belum di-clone. Cloning...";
-              mkdir -p ~/senpro/<<NIU>>/modul02;
-              cd ~/senpro/<<NIU>>/modul02;
-              git clone <<LINK_REPOSITORY_FORK>>;
-              cd ~/senpro/<<NIU>>/modul02/senpro-github-action;
+              mkdir -p ~/senpro/514148/modul02;
+              cd ~/senpro/514148/modul02;
+              git clone git@github.com:runsdev/senpro-github-action.git;
+              cd ~/senpro/514148/modul02/senpro-github-action;
               echo "Install Package dan Build Project";
               npm install;
               npm run build;
             } ||
             {
               echo "Repository sudah ada. Building...";
-              cd ~/senpro/<<NIU>>/modul02/senpro-github-action;
+              cd ~/senpro/514148/modul02/senpro-github-action;
               git restore .;
               git pull origin main;
               echo "Install Package dan Build Project";
